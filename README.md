@@ -1,6 +1,6 @@
 # HydraServer
 
-A simple example of a full-features server implementing the [Hydra](http://www.hydra-cg.com/) API Specification.
+A simple example of a full-featured server implementing the [Hydra](http://www.hydra-cg.com/) API Specification.
 
 Built on [json-server](https://github.com/typicode/json-server) and using example data from [Wikibus](https://github.com/wikibus).
 
