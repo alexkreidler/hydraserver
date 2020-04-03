@@ -1,0 +1,1503 @@
+{
+  "home": {
+    "@context": "/context",
+    "@id": "/context",
+    "http://www.w3.org/ns/hydra/core#title": "wikibus.org library",
+    "http://www.w3.org/ns/hydra/core#description": "Here you can explore the private collection of books and other physical and electronic media about public transport",
+    "brochures": {
+      "@id": "brochures"
+    },
+    "books": {
+      "@id": "books"
+    },
+    "magazines": {
+      "@id": "magazines"
+    },
+    "@type": "https://wikibus.org/api#EntryPoint"
+  },
+  "context": {
+    "@context": [
+      {
+        "@base": "http://localhost:9090"
+      },
+      {
+        "@base": "http://localhost:9090",
+        "wbo": "https://wikibus.org/ontology#",
+        "api": "http://localhost:9090",
+        "magazines": {
+          "@id": "api:#magazines",
+          "@type": "@id"
+        },
+        "brochures": {
+          "@id": "api:#brochures",
+          "@type": "@id"
+        },
+        "books": {
+          "@id": "api:#books",
+          "@type": "@id"
+        }
+      }
+    ]
+  },
+  "doc": {
+    "@id": "/doc",
+    "@type": "ApiDocumentation",
+    "entrypoint": "/",
+    "supportedClass": [
+      {
+        "@id": "api:#EntryPoint",
+        "@type": "Class",
+        "description": "The EntryPoint class",
+        "supportedOperation": {
+          "@type": "Operation",
+          "description": "The entrypoint is the the API starts",
+          "expects": "owl:Nothing",
+          "method": "GET",
+          "returns": "api:#EntryPoint",
+          "title": "Gets the API entrypoint"
+        },
+        "supportedProperty": [
+          {
+            "@type": "SupportedProperty",
+            "description": "The title property",
+            "property": {
+              "@id": "hydra:title",
+              "@type": "rdf:Property",
+              "range": "xsd:string"
+            },
+            "readable": true,
+            "required": false,
+            "title": "title",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The description property",
+            "property": {
+              "@id": "hydra:description",
+              "@type": "rdf:Property",
+              "range": "xsd:string"
+            },
+            "readable": true,
+            "required": false,
+            "title": "description",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "Brochures and other promotional publications",
+            "property": {
+              "@id": "api:#brochures",
+              "@type": ["rdf:Property", "Link"],
+              "range": "Collection",
+              "supportedOperation": {
+                "@type": "Operation",
+                "description": "",
+                "expects": "owl:Nothing",
+                "method": "GET",
+                "returns": "Collection",
+                "title": "Gets the collection of brochures (paged)"
+              }
+            },
+            "readable": true,
+            "required": false,
+            "title": "brochures",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "Books about public transport history and manufacturers, etc.",
+            "property": {
+              "@id": "api:#books",
+              "@type": ["rdf:Property", "Link"],
+              "range": "Collection",
+              "supportedOperation": {
+                "@type": "Operation",
+                "description": "",
+                "expects": "owl:Nothing",
+                "method": "GET",
+                "returns": "Collection",
+                "title": "Gets the collection of books (paged)"
+              }
+            },
+            "readable": true,
+            "required": false,
+            "title": "books",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "Periodicals such as weekly/monthly magazines as well as yearly catalogs",
+            "property": {
+              "@id": "api:#magazines",
+              "@type": ["rdf:Property", "Link"],
+              "range": "Collection",
+              "supportedOperation": {
+                "@type": "Operation",
+                "description": "",
+                "expects": "owl:Nothing",
+                "method": "GET",
+                "returns": "Collection",
+                "title": "Gets the collection of magazines"
+              }
+            },
+            "readable": true,
+            "required": false,
+            "title": "magazines",
+            "writeable": false
+          }
+        ],
+        "title": "EntryPoint"
+      },
+      {
+        "@id": "api:#ImageUpload",
+        "@type": "Class",
+        "description": "The ImageUpload class",
+        "supportedProperty": {
+          "@type": "SupportedProperty",
+          "description": "The files property",
+          "property": {
+            "@id": "schema:image",
+            "@type": "rdf:Property",
+            "range": "schema:ImageObject"
+          },
+          "readable": true,
+          "required": false,
+          "title": "files",
+          "writeable": true
+        },
+        "title": "ImageUpload"
+      },
+      {
+        "@id": "api:#PdfUpload",
+        "@type": "Class",
+        "description": "The PdfUpload class",
+        "supportedProperty": {
+          "@type": "SupportedProperty",
+          "description": "The contents property",
+          "property": {
+            "@id": "schema:associatedMedia",
+            "@type": "rdf:Property",
+            "range": "schema:MediaObject"
+          },
+          "readable": true,
+          "required": false,
+          "title": "contents",
+          "writeable": true
+        },
+        "title": "PdfUpload"
+      },
+      {
+        "@id": "https://wikibus.org/ontology#Book",
+        "@type": "Class",
+        "description": "Book",
+        "supportedOperation": {
+          "@type": "Operation",
+          "description": "",
+          "expects": "owl:Nothing",
+          "method": "GET",
+          "returns": "https://wikibus.org/ontology#Book",
+          "title": "Gets the book"
+        },
+        "supportedProperty": [
+          {
+            "@type": "SupportedProperty",
+            "description": "The isbn property",
+            "property": {
+              "@id": "schema:isbn",
+              "@type": "rdf:Property",
+              "range": "xsd:string"
+            },
+            "readable": true,
+            "required": false,
+            "title": "isbn",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The author property",
+            "property": {
+              "@id": "schema:author",
+              "@type": "rdf:Property",
+              "range": "schema:Person"
+            },
+            "readable": true,
+            "required": false,
+            "title": "author",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The title property",
+            "property": {
+              "@id": "dc:title",
+              "@type": "rdf:Property",
+              "range": "xsd:string"
+            },
+            "readable": true,
+            "required": false,
+            "title": "title",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The languages property",
+            "property": {
+              "@id": "dc:language",
+              "@type": "rdf:Property",
+              "range": "dc:language"
+            },
+            "readable": true,
+            "required": false,
+            "title": "languages",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The pages property",
+            "property": {
+              "@id": "http://purl.org/ontology/bibo/pages",
+              "@type": "rdf:Property",
+              "range": "xsd:integer"
+            },
+            "readable": true,
+            "required": false,
+            "title": "pages",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The date property",
+            "property": {
+              "@id": "dc:date",
+              "@type": "rdf:Property",
+              "range": "xsd:date"
+            },
+            "readable": true,
+            "required": false,
+            "title": "date",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The year property",
+            "property": {
+              "@id": "http://lsdis.cs.uga.edu/projects/semdis/opus#year",
+              "@type": "rdf:Property",
+              "range": "xsd:gYear"
+            },
+            "readable": true,
+            "required": false,
+            "title": "year",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The month property",
+            "property": {
+              "@id": "http://lsdis.cs.uga.edu/projects/semdis/opus#month",
+              "@type": "rdf:Property",
+              "range": "xsd:gMonth"
+            },
+            "readable": true,
+            "required": false,
+            "title": "month",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The images property",
+            "property": {
+              "@id": "api:#images",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": false,
+            "required": false,
+            "title": "images",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The coverImage property",
+            "property": {
+              "@id": "schema:primaryImageOfPage",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": false,
+            "required": false,
+            "title": "coverImage",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The image property",
+            "property": {
+              "@id": "schema:image",
+              "@type": "rdf:Property",
+              "range": "schema:ImageObject"
+            },
+            "readable": false,
+            "required": false,
+            "title": "image",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The content property",
+            "property": {
+              "@id": "schema:associatedMedia",
+              "@type": "rdf:Property",
+              "range": "schema:MediaObject"
+            },
+            "readable": true,
+            "required": false,
+            "title": "content",
+            "writeable": false
+          }
+        ],
+        "title": "Book"
+      },
+      {
+        "@id": "https://wikibus.org/ontology#Brochure",
+        "@type": "Class",
+        "description": "Public transport brochure",
+        "supportedOperation": {
+          "@type": "Operation",
+          "description": "",
+          "expects": "owl:Nothing",
+          "method": "GET",
+          "returns": "https://wikibus.org/ontology#Brochure",
+          "title": "Get brochure"
+        },
+        "supportedProperty": [
+          {
+            "@type": "SupportedProperty",
+            "description": "The title property",
+            "property": {
+              "@id": "dc:title",
+              "@type": "rdf:Property",
+              "range": "xsd:string"
+            },
+            "readable": true,
+            "required": true,
+            "title": "title",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The description property",
+            "property": {
+              "@id": "rdfs:comment",
+              "@type": "rdf:Property",
+              "range": "xsd:string"
+            },
+            "readable": true,
+            "required": false,
+            "title": "description",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The code property",
+            "property": {
+              "@id": "dc:identifier",
+              "@type": "rdf:Property",
+              "range": "xsd:string"
+            },
+            "readable": true,
+            "required": false,
+            "title": "code",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The location property",
+            "property": {
+              "@id": "api:#storageLocation",
+              "@type": "rdf:Property",
+              "range": "api:#StorageLocation"
+            },
+            "readable": true,
+            "required": false,
+            "title": "location",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The languages property",
+            "property": {
+              "@id": "dc:language",
+              "@type": "rdf:Property",
+              "range": "dc:language"
+            },
+            "readable": true,
+            "required": false,
+            "title": "languages",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The pages property",
+            "property": {
+              "@id": "http://purl.org/ontology/bibo/pages",
+              "@type": "rdf:Property",
+              "range": "xsd:integer"
+            },
+            "readable": true,
+            "required": false,
+            "title": "pages",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The date property",
+            "property": {
+              "@id": "dc:date",
+              "@type": "rdf:Property",
+              "range": "xsd:date"
+            },
+            "readable": true,
+            "required": false,
+            "title": "date",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The year property",
+            "property": {
+              "@id": "http://lsdis.cs.uga.edu/projects/semdis/opus#year",
+              "@type": "rdf:Property",
+              "range": "xsd:gYear"
+            },
+            "readable": true,
+            "required": false,
+            "title": "year",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The month property",
+            "property": {
+              "@id": "http://lsdis.cs.uga.edu/projects/semdis/opus#month",
+              "@type": "rdf:Property",
+              "range": "xsd:gMonth"
+            },
+            "readable": true,
+            "required": false,
+            "title": "month",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The images property",
+            "property": {
+              "@id": "api:#images",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": false,
+            "required": false,
+            "title": "images",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The coverImage property",
+            "property": {
+              "@id": "schema:primaryImageOfPage",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": false,
+            "required": false,
+            "title": "coverImage",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The image property",
+            "property": {
+              "@id": "schema:image",
+              "@type": "rdf:Property",
+              "range": "schema:ImageObject"
+            },
+            "readable": false,
+            "required": false,
+            "title": "image",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The content property",
+            "property": {
+              "@id": "schema:associatedMedia",
+              "@type": "rdf:Property",
+              "range": "schema:MediaObject"
+            },
+            "readable": true,
+            "required": false,
+            "title": "content",
+            "writeable": false
+          }
+        ],
+        "title": "Brochure"
+      },
+      {
+        "@id": "https://wikibus.org/ontology#BrochureCollection",
+        "@type": "Class",
+        "description": "A collection of related resources",
+        "supportedProperty": [
+          {
+            "@type": "SupportedProperty",
+            "description": "The search property",
+            "property": {
+              "@id": "hydra:search",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "search",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The currentMappings property",
+            "property": {
+              "@id": "hex:currentMappings",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "currentMappings",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The title property",
+            "property": {
+              "@id": "rdfs:label",
+              "@type": "rdf:Property",
+              "range": "xsd:string"
+            },
+            "readable": true,
+            "required": false,
+            "title": "title",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The members of this collection",
+            "property": {
+              "@id": "hydra:member",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "members",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The views of this collection",
+            "property": {
+              "@id": "hydra:view",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "views",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The number of members of this collection",
+            "property": {
+              "@id": "hydra:totalItems",
+              "@type": "rdf:Property",
+              "range": "xsd:nonNegativeInteger"
+            },
+            "readable": true,
+            "required": false,
+            "title": "totalItems",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The manages property",
+            "property": {
+              "@id": "hydra:manages",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "manages",
+            "writeable": false
+          }
+        ],
+        "title": "BrochureCollection"
+      },
+      {
+        "@id": "hydra:Collection",
+        "@type": "Class",
+        "description": "A collection of related resources",
+        "supportedProperty": [
+          {
+            "@type": "SupportedProperty",
+            "description": "The members of this collection",
+            "property": {
+              "@id": "hydra:member",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "members",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The views of this collection",
+            "property": {
+              "@id": "hydra:view",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "views",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The number of members of this collection",
+            "property": {
+              "@id": "hydra:totalItems",
+              "@type": "rdf:Property",
+              "range": "xsd:nonNegativeInteger"
+            },
+            "readable": true,
+            "required": false,
+            "title": "totalItems",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The manages property",
+            "property": {
+              "@id": "hydra:manages",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "manages",
+            "writeable": false
+          }
+        ],
+        "title": "ImageCollection"
+      },
+      {
+        "@id": "https://wikibus.org/ontology#MagazineIssue",
+        "@type": "Class",
+        "description": "The Issue class",
+        "supportedOperation": {
+          "@type": "Operation",
+          "description": "",
+          "expects": "owl:Nothing",
+          "method": "GET",
+          "returns": "https://wikibus.org/ontology#MagazineIssue",
+          "title": ""
+        },
+        "supportedProperty": [
+          {
+            "@type": "SupportedProperty",
+            "description": "The magazine property",
+            "property": {
+              "@id": "schema:isPartOf",
+              "@type": "rdf:Property",
+              "range": "https://wikibus.org/ontology#Magazine",
+              "supportedOperation": {
+                "@type": "Operation",
+                "description": "",
+                "expects": "owl:Nothing",
+                "method": "GET",
+                "returns": "https://wikibus.org/ontology#Magazine",
+                "title": ""
+              }
+            },
+            "readable": true,
+            "required": false,
+            "title": "magazine",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The number property",
+            "property": {
+              "@id": "schema:issueNumber",
+              "@type": "rdf:Property",
+              "range": "xsd:string"
+            },
+            "readable": true,
+            "required": false,
+            "title": "number",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The languages property",
+            "property": {
+              "@id": "dc:language",
+              "@type": "rdf:Property",
+              "range": "dc:language"
+            },
+            "readable": true,
+            "required": false,
+            "title": "languages",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The pages property",
+            "property": {
+              "@id": "http://purl.org/ontology/bibo/pages",
+              "@type": "rdf:Property",
+              "range": "xsd:integer"
+            },
+            "readable": true,
+            "required": false,
+            "title": "pages",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The date property",
+            "property": {
+              "@id": "dc:date",
+              "@type": "rdf:Property",
+              "range": "xsd:date"
+            },
+            "readable": true,
+            "required": false,
+            "title": "date",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The year property",
+            "property": {
+              "@id": "http://lsdis.cs.uga.edu/projects/semdis/opus#year",
+              "@type": "rdf:Property",
+              "range": "xsd:gYear"
+            },
+            "readable": true,
+            "required": false,
+            "title": "year",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The month property",
+            "property": {
+              "@id": "http://lsdis.cs.uga.edu/projects/semdis/opus#month",
+              "@type": "rdf:Property",
+              "range": "xsd:gMonth"
+            },
+            "readable": true,
+            "required": false,
+            "title": "month",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The images property",
+            "property": {
+              "@id": "api:#images",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": false,
+            "required": false,
+            "title": "images",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The coverImage property",
+            "property": {
+              "@id": "schema:primaryImageOfPage",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": false,
+            "required": false,
+            "title": "coverImage",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The image property",
+            "property": {
+              "@id": "schema:image",
+              "@type": "rdf:Property",
+              "range": "schema:ImageObject"
+            },
+            "readable": false,
+            "required": false,
+            "title": "image",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The content property",
+            "property": {
+              "@id": "schema:associatedMedia",
+              "@type": "rdf:Property",
+              "range": "schema:MediaObject"
+            },
+            "readable": true,
+            "required": false,
+            "title": "content",
+            "writeable": false
+          }
+        ],
+        "title": "Issue"
+      },
+      {
+        "@id": "https://wikibus.org/ontology#Magazine",
+        "@type": "Class",
+        "description": "The Magazine class",
+        "supportedOperation": {
+          "@type": "Operation",
+          "description": "",
+          "expects": "owl:Nothing",
+          "method": "GET",
+          "returns": "https://wikibus.org/ontology#Magazine",
+          "title": ""
+        },
+        "supportedProperty": [
+          {
+            "@type": "SupportedProperty",
+            "description": "The title property",
+            "property": {
+              "@id": "dc:title",
+              "@type": "rdf:Property",
+              "range": "xsd:string"
+            },
+            "readable": true,
+            "required": false,
+            "title": "title",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The issues property",
+            "property": {
+              "@id": "api:#issues",
+              "@type": ["rdf:Property", "Link"],
+              "range": "Collection",
+              "supportedOperation": {
+                "@type": "Operation",
+                "description": "",
+                "expects": "owl:Nothing",
+                "method": "GET",
+                "returns": "Collection",
+                "title": ""
+              }
+            },
+            "readable": true,
+            "required": false,
+            "title": "issues",
+            "writeable": false
+          }
+        ],
+        "title": "Magazine"
+      },
+      {
+        "@id": "hydra:Collection",
+        "@type": "Class",
+        "description": "A collection of related resources",
+        "supportedProperty": [
+          {
+            "@type": "SupportedProperty",
+            "description": "The search property",
+            "property": {
+              "@id": "hydra:search",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "search",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The currentMappings property",
+            "property": {
+              "@id": "hex:currentMappings",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "currentMappings",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The title property",
+            "property": {
+              "@id": "rdfs:label",
+              "@type": "rdf:Property",
+              "range": "xsd:string"
+            },
+            "readable": true,
+            "required": false,
+            "title": "title",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The members of this collection",
+            "property": {
+              "@id": "hydra:member",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "members",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The views of this collection",
+            "property": {
+              "@id": "hydra:view",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "views",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The number of members of this collection",
+            "property": {
+              "@id": "hydra:totalItems",
+              "@type": "rdf:Property",
+              "range": "xsd:nonNegativeInteger"
+            },
+            "readable": true,
+            "required": false,
+            "title": "totalItems",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The manages property",
+            "property": {
+              "@id": "hydra:manages",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "manages",
+            "writeable": false
+          }
+        ],
+        "title": "SearchableCollection"
+      },
+      {
+        "@id": "https://wikibus.org/ontology#Source",
+        "@type": "Class",
+        "description": "The Source class",
+        "supportedProperty": [
+          {
+            "@type": "SupportedProperty",
+            "description": "The languages property",
+            "property": {
+              "@id": "dc:language",
+              "@type": "rdf:Property",
+              "range": "dc:language"
+            },
+            "readable": true,
+            "required": false,
+            "title": "languages",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The pages property",
+            "property": {
+              "@id": "http://purl.org/ontology/bibo/pages",
+              "@type": "rdf:Property",
+              "range": "xsd:integer"
+            },
+            "readable": true,
+            "required": false,
+            "title": "pages",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The date property",
+            "property": {
+              "@id": "dc:date",
+              "@type": "rdf:Property",
+              "range": "xsd:date"
+            },
+            "readable": true,
+            "required": false,
+            "title": "date",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The year property",
+            "property": {
+              "@id": "http://lsdis.cs.uga.edu/projects/semdis/opus#year",
+              "@type": "rdf:Property",
+              "range": "xsd:gYear"
+            },
+            "readable": true,
+            "required": false,
+            "title": "year",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The month property",
+            "property": {
+              "@id": "http://lsdis.cs.uga.edu/projects/semdis/opus#month",
+              "@type": "rdf:Property",
+              "range": "xsd:gMonth"
+            },
+            "readable": true,
+            "required": false,
+            "title": "month",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The images property",
+            "property": {
+              "@id": "api:#images",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": false,
+            "required": false,
+            "title": "images",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The coverImage property",
+            "property": {
+              "@id": "schema:primaryImageOfPage",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": false,
+            "required": false,
+            "title": "coverImage",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The image property",
+            "property": {
+              "@id": "schema:image",
+              "@type": "rdf:Property",
+              "range": "schema:ImageObject"
+            },
+            "readable": false,
+            "required": false,
+            "title": "image",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The content property",
+            "property": {
+              "@id": "schema:associatedMedia",
+              "@type": "rdf:Property",
+              "range": "schema:MediaObject"
+            },
+            "readable": true,
+            "required": false,
+            "title": "content",
+            "writeable": false
+          }
+        ],
+        "title": "Source"
+      },
+      {
+        "@id": "api:#StorageLocation",
+        "@type": "Class",
+        "description": "The StorageLocation class",
+        "supportedProperty": [
+          {
+            "@type": "SupportedProperty",
+            "description": "The name property",
+            "property": {
+              "@id": "schema:name",
+              "@type": "rdf:Property",
+              "range": "xsd:string"
+            },
+            "readable": true,
+            "required": true,
+            "title": "name",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The filingCabinetId property",
+            "property": {
+              "@id": "dc:identifier",
+              "@type": "rdf:Property",
+              "range": "xsd:int"
+            },
+            "readable": false,
+            "required": true,
+            "title": "filingCabinetId",
+            "writeable": true
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The position property",
+            "property": {
+              "@id": "http://www.linkedmodel.org/schema/dtype#position",
+              "@type": "rdf:Property",
+              "range": "xsd:int"
+            },
+            "readable": true,
+            "required": false,
+            "title": "position",
+            "writeable": true
+          }
+        ],
+        "title": "StorageLocation"
+      },
+      {
+        "@id": "hydra:Collection",
+        "@type": "Class",
+        "description": "A collection of related resources",
+        "supportedProperty": [
+          {
+            "@type": "SupportedProperty",
+            "description": "The members of this collection",
+            "property": {
+              "@id": "hydra:member",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "members",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The views of this collection",
+            "property": {
+              "@id": "hydra:view",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "views",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The number of members of this collection",
+            "property": {
+              "@id": "hydra:totalItems",
+              "@type": "rdf:Property",
+              "range": "xsd:nonNegativeInteger"
+            },
+            "readable": true,
+            "required": false,
+            "title": "totalItems",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The manages property",
+            "property": {
+              "@id": "hydra:manages",
+              "@type": "rdf:Property",
+              "range": "Resource"
+            },
+            "readable": true,
+            "required": false,
+            "title": "manages",
+            "writeable": false
+          }
+        ],
+        "title": "Collection"
+      },
+      {
+        "@id": "hydra:Resource",
+        "@type": "Class",
+        "description": "The class of dereferenceable resources.",
+        "title": "Resource"
+      },
+      {
+        "@id": "hydra:PartialCollectionView",
+        "@type": "Class",
+        "description": "A sliced view of a collection (ie. a page)",
+        "supportedProperty": [
+          {
+            "@type": "SupportedProperty",
+            "description": "The next page of this collection",
+            "property": {
+              "@id": "hydra:next",
+              "@type": "rdf:Property",
+              "range": "Collection"
+            },
+            "readable": true,
+            "required": false,
+            "title": "next",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The previous page of this collection",
+            "property": {
+              "@id": "hydra:previous",
+              "@type": "rdf:Property",
+              "range": "Collection"
+            },
+            "readable": true,
+            "required": false,
+            "title": "previous",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The last page of this collection",
+            "property": {
+              "@id": "hydra:last",
+              "@type": "rdf:Property",
+              "range": "Collection"
+            },
+            "readable": true,
+            "required": false,
+            "title": "last",
+            "writeable": false
+          },
+          {
+            "@type": "SupportedProperty",
+            "description": "The first page of this collection",
+            "property": {
+              "@id": "hydra:first",
+              "@type": "rdf:Property",
+              "range": "Collection"
+            },
+            "readable": true,
+            "required": false,
+            "title": "first",
+            "writeable": false
+          }
+        ],
+        "title": "PartialCollectionView"
+      }
+    ],
+    "@context": [
+      {
+        "@base": "/"
+      },
+      {
+        "hydra": "http://www.w3.org/ns/hydra/core#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "vs": "http://www.w3.org/2003/06/sw-vocab-status/ns#",
+        "dc": "http://purl.org/dc/terms/",
+        "cc": "http://creativecommons.org/ns#",
+        "schema": "http://schema.org/",
+        "apiDocumentation": "hydra:apiDocumentation",
+        "ApiDocumentation": "hydra:ApiDocumentation",
+        "title": "hydra:title",
+        "description": "hydra:description",
+        "entrypoint": {
+          "@id": "hydra:entrypoint",
+          "@type": "@id"
+        },
+        "supportedClass": {
+          "@id": "hydra:supportedClass",
+          "@type": "@vocab"
+        },
+        "Class": "hydra:Class",
+        "supportedProperty": {
+          "@id": "hydra:supportedProperty",
+          "@type": "@id"
+        },
+        "SupportedProperty": "hydra:SupportedProperty",
+        "property": {
+          "@id": "hydra:property",
+          "@type": "@vocab"
+        },
+        "required": "hydra:required",
+        "readable": "hydra:readable",
+        "writeable": "hydra:writeable",
+        "supportedOperation": {
+          "@id": "hydra:supportedOperation",
+          "@type": "@id"
+        },
+        "Operation": "hydra:Operation",
+        "method": "hydra:method",
+        "expects": {
+          "@id": "hydra:expects",
+          "@type": "@vocab"
+        },
+        "returns": {
+          "@id": "hydra:returns",
+          "@type": "@vocab"
+        },
+        "possibleStatus": {
+          "@id": "hydra:possibleStatus",
+          "@type": "@id"
+        },
+        "Status": "hydra:Status",
+        "statusCode": "hydra:statusCode",
+        "Error": "hydra:Error",
+        "Resource": "hydra:Resource",
+        "operation": "hydra:operation",
+        "Collection": "hydra:Collection",
+        "collection": "hydra:collection",
+        "member": {
+          "@id": "hydra:member",
+          "@type": "@id"
+        },
+        "manages": "hydra:manages",
+        "subject": {
+          "@id": "hydra:subject",
+          "@type": "@vocab"
+        },
+        "object": {
+          "@id": "hydra:object",
+          "@type": "@vocab"
+        },
+        "search": "hydra:search",
+        "freetextQuery": "hydra:freetextQuery",
+        "view": {
+          "@id": "hydra:view",
+          "@type": "@id"
+        },
+        "PartialCollectionView": "hydra:PartialCollectionView",
+        "totalItems": "hydra:totalItems",
+        "first": {
+          "@id": "hydra:first",
+          "@type": "@id"
+        },
+        "last": {
+          "@id": "hydra:last",
+          "@type": "@id"
+        },
+        "next": {
+          "@id": "hydra:next",
+          "@type": "@id"
+        },
+        "previous": {
+          "@id": "hydra:previous",
+          "@type": "@id"
+        },
+        "Link": "hydra:Link",
+        "TemplatedLink": "hydra:TemplatedLink",
+        "IriTemplate": "hydra:IriTemplate",
+        "template": "hydra:template",
+        "Rfc6570Template": "hydra:Rfc6570Template",
+        "variableRepresentation": {
+          "@id": "hydra:variableRepresentation",
+          "@type": "@vocab"
+        },
+        "VariableRepresentation": "hydra:VariableRepresentation",
+        "BasicRepresentation": "hydra:BasicRepresentation",
+        "ExplicitRepresentation": "hydra:ExplicitRepresentation",
+        "mapping": "hydra:mapping",
+        "IriTemplateMapping": "hydra:IriTemplateMapping",
+        "variable": "hydra:variable",
+        "offset": {
+          "@id": "hydra:offset",
+          "@type": "xsd:nonNegativeInteger"
+        },
+        "limit": {
+          "@id": "hydra:limit",
+          "@type": "xsd:nonNegativeInteger"
+        },
+        "pageIndex": {
+          "@id": "hydra:pageIndex",
+          "@type": "xsd:nonNegativeInteger"
+        },
+        "pageReference": {
+          "@id": "hydra:pageReference"
+        },
+        "returnsHeader": {
+          "@id": "hydra:returnsHeader",
+          "@type": "xsd:string"
+        },
+        "expectsHeader": {
+          "@id": "hydra:expectsHeader",
+          "@type": "xsd:string"
+        },
+        "defines": {
+          "@reverse": "rdfs:isDefinedBy"
+        },
+        "comment": "rdfs:comment",
+        "label": "rdfs:label",
+        "preferredPrefix": "http://purl.org/vocab/vann/preferredNamespacePrefix",
+        "cc:license": {
+          "@type": "@id"
+        },
+        "cc:attributionURL": {
+          "@type": "@id"
+        },
+        "domain": {
+          "@id": "rdfs:domain",
+          "@type": "@vocab"
+        },
+        "range": {
+          "@id": "rdfs:range",
+          "@type": "@vocab"
+        },
+        "subClassOf": {
+          "@id": "rdfs:subClassOf",
+          "@type": "@vocab"
+        },
+        "subPropertyOf": {
+          "@id": "rdfs:subPropertyOf",
+          "@type": "@vocab"
+        },
+        "seeAlso": {
+          "@id": "rdfs:seeAlso",
+          "@type": "@id"
+        },
+        "domainIncludes": {
+          "@id": "schema:domainIncludes",
+          "@type": "@id"
+        },
+        "rangeIncludes": {
+          "@id": "schema:rangeIncludes",
+          "@type": "@id"
+        }
+      }
+    ]
+  }
+}
