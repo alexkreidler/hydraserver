@@ -21,7 +21,6 @@
         "@base": "http://localhost:9090"
       },
       {
-        "@base": "http://localhost:9090",
         "wbo": "https://wikibus.org/ontology#",
         "api": "http://localhost:9090",
         "magazines": {
