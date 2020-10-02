@@ -11,26 +11,12 @@
     "context": {
         "@context": [
             {
-                "ppl": "/onto/",
-                "schema": "http://schema.org/",
-                "hydra": "http://www.w3.org/ns/hydra/core#",
-                "people": {
-                    "@id": "ppl:people",
-                    "@type": "@id"
-                }
-            },
-            "https://www.w3.org/ns/hydra/context.jsonld"
-        ]
-    },
-    "onto": {
-        "@context": [
-            {
-                "ppl": "/onto/",
-                "schema": "http://schema.org/"
-            },
+                "ppl": "http://people.alexkreidler.com/ns"
+            }
+            "http://schema.org/",
             "https://www.w3.org/ns/hydra/context.jsonld"
         ],
-        "@id": "/onto/",
+        "@id": "http://people.alexkreidler.com/ns",
         "@type": "owl:Ontology",
         "http://creativecommons.org/ns#attributionName": "Authors",
         "http://creativecommons.org/ns#attributionURL": {
@@ -43,13 +29,16 @@
         "http://purl.org/dc/terms/publisher": "Authors",
         "http://purl.org/dc/terms/rights": "Copyright © Authors",
         "http://purl.org/vocab/vann/preferredNamespacePrefix": "ltk",
-        "comment": "An example ontology for tracking daily life events. Includes Hydra API: todo maybe separate",
         "label": "The People Ontology",
-        "defines": {
-            "ppl:people": {
-                "@type": "hydra:Link"
+        "defines": [
+            {
+                "@id": "Person",
+                "supportedProperty": [
+                    "name",
+                    "jobTitle"
+                ]
             }
-        }
+        ]
     },
     "doc": {
         "@context": "/context",
@@ -57,45 +46,6 @@
         "@type": "ApiDocumentation",
         "entrypoint": "/home",
         "supportedClass": [
-            {
-                "@id": "schema:Person",
-                "@type": "Class",
-                "title": "People",
-                "description": "The People class",
-                "supportedOperation": [
-                    {
-                        "@type": "Operation",
-                        "expects": "owl:Nothing",
-                        "method": "GET",
-                        "returns": "Collection",
-                        "title": "Gets all the people"
-                    }
-                ],
-                "supportedProperty": [
-                    {
-                        "@type": "SupportedProperty",
-                        "title": "name",
-                        "description": "The name property",
-                        "property": {
-                            "@id": "schema:name"
-                        },
-                        "readable": true,
-                        "required": false,
-                        "writeable": true
-                    },
-                    {
-                        "@type": "SupportedProperty",
-                        "title": "jobTitle",
-                        "description": "The jobTitle property",
-                        "property": {
-                            "@id": "schema:jobTitle"
-                        },
-                        "readable": true,
-                        "required": false,
-                        "writeable": true
-                    }
-                ]
-            },
             {
                 "@id": "ppl:EntryPoint",
                 "@type": "Class",
@@ -137,7 +87,7 @@
                     },
                     {
                         "@type": "SupportedProperty",
-                        "description": "All the people",
+                        "description": "All the events",
                         "property": {
                             "@id": "ppl:people",
                             "@type": [
