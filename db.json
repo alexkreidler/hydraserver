@@ -1,17 +1,194 @@
 {
-    "home": {
-        "@context": "http://localhost:9090/context",
-        "id": "http://localhost:9090/home",
+    "hydraRoot": {
+        "@context": "/context",
+        "@id": "/hydraRoot",
+        "@type": "ppl:EntryPoint",
         "title": "Example People API Server",
         "description": "Using the people Hydra ontology",
-        "people": {
-            "@id": "http://localhost:9090/people"
-        }
+        "collection": [
+            {
+                "@id": "/people",
+                "@type": "ppl:People"
+            }
+        ],
+        "people": "/people"
     },
+    "dctx": {
+        "@context": [
+            {
+                "id": "@id"
+            },
+            "https://schema.org/docs/jsonldcontext.jsonld"
+        ]
+    },
+    "pcol": {},
+    "people": [
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "1",
+            "givenName": "Wadsworth",
+            "familyName": "Betteson",
+            "email": "wbetteson0@netlog.com",
+            "gender": "Male",
+            "birthDate": "7/30/1981"
+        },
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "1",
+            "givenName": "Wadsworth",
+            "familyName": "Betteson",
+            "email": "wbetteson0@netlog.com",
+            "gender": "Male",
+            "birthDate": "7/30/1981"
+        },
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "2",
+            "givenName": "Reid",
+            "familyName": "Fullilove",
+            "email": "rfullilove1@nih.gov",
+            "gender": "Male",
+            "birthDate": "1/7/1962"
+        },
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "3",
+            "givenName": "Georgie",
+            "familyName": "Webermann",
+            "email": "gwebermann2@howstuffworks.com",
+            "gender": "Male",
+            "birthDate": "9/22/1971"
+        },
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "4",
+            "givenName": "Monica",
+            "familyName": "Brack",
+            "email": "mbrack3@altervista.org",
+            "gender": "Female",
+            "birthDate": "10/4/1993"
+        },
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "5",
+            "givenName": "Feliza",
+            "familyName": "Birt",
+            "email": "fbirt4@theguardian.com",
+            "gender": "Female",
+            "birthDate": "12/31/1991"
+        },
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "6",
+            "givenName": "Thane",
+            "familyName": "Choppen",
+            "email": "tchoppen5@ehow.com",
+            "gender": "Male",
+            "birthDate": "1/3/1965"
+        },
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "7",
+            "givenName": "Neale",
+            "familyName": "Gounel",
+            "email": "ngounel6@purevolume.com",
+            "gender": "Male",
+            "birthDate": "4/29/1983"
+        },
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "8",
+            "givenName": "Cullin",
+            "familyName": "Loder",
+            "email": "cloder7@indiegogo.com",
+            "gender": "Male",
+            "birthDate": "9/20/1992"
+        },
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "9",
+            "givenName": "Alexandro",
+            "familyName": "Waddingham",
+            "email": "awaddingham8@cloudflare.com",
+            "gender": "Male",
+            "birthDate": "11/15/1978"
+        },
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "10",
+            "givenName": "Margery",
+            "familyName": "Showte",
+            "email": "mshowte9@upenn.edu",
+            "gender": "Female",
+            "birthDate": "12/31/1994"
+        },
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "11",
+            "givenName": "Windy",
+            "familyName": "Gimlet",
+            "email": "wgimleta@cafepress.com",
+            "gender": "Female",
+            "birthDate": "4/2/1961"
+        },
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "12",
+            "givenName": "Dorey",
+            "familyName": "Stiff",
+            "email": "dstiffb@cocolog-nifty.com",
+            "gender": "Female",
+            "birthDate": "9/21/1968"
+        },
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "13",
+            "givenName": "Arlyn",
+            "familyName": "Ranby",
+            "email": "aranbyc@kickstarter.com",
+            "gender": "Female",
+            "birthDate": "7/11/1980"
+        },
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "14",
+            "givenName": "Roz",
+            "familyName": "Haseldine",
+            "email": "rhaseldined@mozilla.org",
+            "gender": "Female",
+            "birthDate": "9/30/1975"
+        },
+        {
+            "@context": "/dctx",
+            "@type": "Person",
+            "id": "15",
+            "givenName": "Ashli",
+            "familyName": "Petschel",
+            "email": "apetschele@theguardian.com",
+            "gender": "Female",
+            "birthDate": "12/1/1996"
+        }
+    ],
     "context": {
         "@context": [
             {
-                "ppl": "http://localhost:9090/onto/",
+                "@vocab": "http://localhost:9090/",
+                "ppl": "onto/",
                 "schema": "http://schema.org/",
                 "hydra": "http://www.w3.org/ns/hydra/core#",
                 "people": {
@@ -23,8 +200,8 @@
         ]
     },
     "onto": {
-        "@context": "http://localhost:9090/context",
-        "@id": "http://localhost:9090/onto/",
+        "@context": "/context",
+        "@id": "onto/",
         "@type": "owl:Ontology",
         "http://creativecommons.org/ns#attributionName": "Authors",
         "http://creativecommons.org/ns#attributionURL": {
@@ -37,7 +214,7 @@
         "http://purl.org/dc/terms/publisher": "Authors",
         "http://purl.org/dc/terms/rights": "Copyright © Authors",
         "http://purl.org/vocab/vann/preferredNamespacePrefix": "ltk",
-        "comment": "An example ontology for tracking daily life events. Includes Hydra API: todo maybe separate",
+        "comment": "An example ontology for tracking daily life persons. Includes Hydra API: todo maybe separate",
         "label": "The People Ontology",
         "defines": {
             "ppl:people": {
@@ -46,10 +223,10 @@
         }
     },
     "doc": {
-        "@context": "http://localhost:9090/context",
-        "@id": "http://localhost:9090/doc",
+        "@context": "/context",
+        "@id": "/doc",
         "@type": "ApiDocumentation",
-        "entrypoint": "/home",
+        "entrypoint": "/hydraRoot",
         "supportedClass": [
             {
                 "@id": "schema:Person",
@@ -61,8 +238,8 @@
                         "@type": "Operation",
                         "expects": "owl:Nothing",
                         "method": "GET",
-                        "returns": "Collection",
-                        "title": "Gets all the people"
+                        "returns": "schema:Person",
+                        "title": "Gets a person"
                     }
                 ],
                 "supportedProperty": [
@@ -87,6 +264,50 @@
                         "readable": true,
                         "required": false,
                         "writeable": true
+                    }
+                ]
+            },
+            {
+                "@id": "ppl:People",
+                "@type": "hydra:Class",
+                "subClassOf": "http://www.w3.org/ns/hydra/core#Collection",
+                "label": "People",
+                "description": "A collection of people",
+                "supportedOperation": [
+                    {
+                        "@id": "ppl:CreatePerson",
+                        "@type": "http://schema.org/AddAction",
+                        "method": "POST",
+                        "label": "Creates a new person entity",
+                        "description": null,
+                        "expects": "http://schema.org/Person",
+                        "returns": "http://schema.org/Person",
+                        "statusCodes": [
+                            {
+                                "code": 201,
+                                "description": "If the person entity was created successfully."
+                            }
+                        ]
+                    },
+                    {
+                        "@id": "ppl:GetPeople",
+                        "@type": "hydra:Operation",
+                        "method": "GET",
+                        "label": "Retrieves all person entities",
+                        "description": null,
+                        "expects": null,
+                        "returns": "ppl:People",
+                        "statusCodes": []
+                    }
+                ],
+                "supportedProperty": [
+                    {
+                        "property": "http://www.w3.org/ns/hydra/core#member",
+                        "hydra:title": "members",
+                        "hydra:description": "The persons",
+                        "required": null,
+                        "readonly": false,
+                        "writeonly": false
                     }
                 ]
             },
@@ -138,15 +359,7 @@
                                 "rdf:Property",
                                 "Link"
                             ],
-                            "range": "Collection",
-                            "supportedOperation": {
-                                "@type": "Operation",
-                                "description": "",
-                                "expects": "owl:Nothing",
-                                "method": "GET",
-                                "returns": "Collection",
-                                "title": "Gets the collection of people (paged)"
-                            }
+                            "range": "ppl:People"
                         },
                         "readable": true,
                         "required": false,
